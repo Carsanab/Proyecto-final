@@ -1,0 +1,29 @@
+{% extends "AppLogistica/padre.html"%}
+
+% extends "AppLogistica/padre.html"%}
+
+{% load static %}
+
+{% block titulo %}
+    
+<h1 class="text-white text-uppercase mb-md-3">INGRESE SUS DATOS DE USUARIO</h1> 
+    
+<ol>
+    <form action="" method="POST"> {% csrf_token %}
+        
+        <table>
+            {{formulario.as_table}}
+        </table>
+    
+        <input class="btn btn-primary py-2 px-20 " type="submit" value="Ingresar" >
+    
+    </form>
+    </ol>
+
+{% endblock %}
+
+
+{% block titulo2 %}
+
+
+{% endblock %}

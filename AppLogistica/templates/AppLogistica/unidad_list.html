@@ -1,0 +1,54 @@
+{% extends "AppLogistica/padre.html"%}
+
+{% load static %}
+
+{% block titulo %}
+    
+    <h1 class="text-white text-uppercase mb-md-3">AQUÍ VEMOS LAS UNIDADES REGISTRADAS</h1> 
+    
+{% endblock %}
+
+
+{% block titulo2 %}
+<ol>
+    {% if user.is_authenticated %}
+    Pulse el botón para registrar una unidad ---> 
+    <button>
+        <a href="{% url 'unidad_crear' %} ">Nueva Unidad</a>
+    </button>
+    {% endif %}
+    <br>
+   
+    ______________________________________________________________________________
+
+    {% for unidad in object_list %}
+<p> 
+    Patente: {{unidad.patente}} <br>
+    Tipo de Unidad: {{unidad.tipo}} <br>
+    Vto. VTV: {{unidad.vto_vtv}} <br>
+    Vto. Ruta: {{unidad.vto_ruta}} <br>
+    <br>
+    {% if user.is_authenticated %}
+    <button>
+        <a href="{% url 'unidad_editar' unidad.id %} ">Editar</a>
+    </button>
+    &nbsp;
+    <button>
+        <a href="{% url 'unidad_eliminar' unidad.id %} ">Eliminar</a>
+    </button> 
+    {% endif %}
+    <br>
+################################################
+</p>
+
+{% endfor %}
+</ol>
+{% endblock %}
+
+
+
+
+
+
+
+

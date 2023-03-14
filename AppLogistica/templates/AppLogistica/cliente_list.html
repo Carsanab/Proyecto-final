@@ -1,0 +1,58 @@
+{% extends "AppLogistica/padre.html"%}
+
+{% load static %}
+
+{% block titulo %}
+    
+    <h1 class="text-white text-uppercase mb-md-3">AQUÍ VEMOS LOS CLIENTES REGISTRADOS</h1> 
+    
+{% endblock %}
+
+
+{% block titulo2 %}
+<ol>
+    {% if user.is_authenticated %}
+    Pulse el botón para registrar un cliente --->
+    
+    <button>
+        <a href="{% url 'cliente_crear' %}" > Nuevo Cliente </a>
+    </button>
+    {% endif %}
+    <br>   
+    ______________________________________________________________________________
+
+    {% for cliente in object_list %}
+<p> Razón Social: {{cliente.razon_social}}<br>
+    CUIT: {{cliente.cuit}} <br>
+    Teléfono: {{cliente.telefono}} <br>
+    Correo: {{cliente.Correo}} <br>
+    <br>
+    {% if user.is_authenticated %}
+    <button>
+        <a href="{% url 'cliente_editar' cliente.id %}">Editar</a>
+    </button>
+    &nbsp;
+    <button>
+        <a href="{% url 'cliente_eliminar' cliente.id %}">Eliminar</a> 
+    </button>
+    {% endif %}
+
+    <br>
+################################################
+
+</p>
+
+{% endfor %}
+</ol>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+

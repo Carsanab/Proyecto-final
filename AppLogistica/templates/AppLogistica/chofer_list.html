@@ -1,0 +1,51 @@
+{% extends "AppLogistica/padre.html"%}
+
+{% load static %}
+
+{% block titulo %}
+    
+    <h1 class="text-white text-uppercase mb-md-3">AQUÍ VEMOS LOS CHOFERES REGISTRADOS</h1> 
+    
+{% endblock %}
+
+
+{% block titulo2 %}
+<ol>
+    {% if user.is_authenticated %}
+    Pulse el botón para registrar un chofer --->
+    
+    <button>
+        <a href="{% url 'chofer_crear' %}" > Nuevo Chofer </a>
+    </button>
+
+    {% endif %}
+    <br>
+   
+    ______________________________________________________________________________
+
+    {% for chofer in object_list %}
+    <p> 
+        Nombre: {{chofer.nombre}} <br>
+        DNI: {{chofer.dni}} <br>
+        Vto. Licencia: {{chofer.vto_licencia}} <br>
+        Vto. LINTI: {{chofer.vto_linti}} <br>
+        <br>
+        {% if user.is_authenticated %}
+        <button>
+            <a href="{% url 'chofer_editar' chofer.id %} ">Editar</a>
+        </button>
+        &nbsp;
+        <button>
+            <a href="{% url 'chofer_eliminar' chofer.id %} ">Eliminar</a> 
+        </button> 
+
+        {% endif %}
+        <br>   
+    ################################################
+    </p>
+    
+    {% endfor %}
+</ol>
+{% endblock %}
+
+

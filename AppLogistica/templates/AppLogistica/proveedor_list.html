@@ -1,0 +1,56 @@
+{% extends "AppLogistica/padre.html"%}
+
+{% load static %}
+
+{% block titulo %}
+    
+    <h1 class="text-white text-uppercase mb-md-3">AQUÍ VEMOS LOS PROVEEDORES REGISTRADOS</h1> 
+    
+{% endblock %}
+
+
+{% block titulo2 %}
+<ol>
+{% if user.is_authenticated %}
+Pulse el botón para registrar un proveedor 
+    
+    <button>
+        
+    <a href="{% url 'proveedor_crear' %}" > Nuevo Proveedor </a>
+        
+    </button>
+    {% endif %}
+    <br>
+    ______________________________________________________________________________
+   
+{% for proveedor in object_list %}
+<p> Razón Social: {{proveedor.razon_social}}<br>
+    CUIT: {{proveedor.cuit}} <br>
+    Teléfono: {{proveedor.telefono}} <br>
+    Correo: {{proveedor.Correo}} <br> 
+    <br>
+    {% if user.is_authenticated %}
+    <button>
+        <a href="{% url 'proveedor_editar' proveedor.id %}">Editar</a>
+    </button>
+        &nbsp;
+    <button>
+        <a href="{% url 'proveedor_eliminar' proveedor.id %}">Eliminar</a>
+    </button>    
+    {% endif %}
+    <br>
+    
+################################################
+</p>
+
+{% endfor %}
+   
+    
+</ol> 
+{% endblock %}
+
+
+
+
+
+

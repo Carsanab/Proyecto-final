@@ -1,0 +1,50 @@
+{% extends "AppLogistica/padre.html"%}
+
+{% load static %}
+
+{% block titulo %}
+    
+    <h1 class="text-white text-uppercase mb-md-3">AQUÍ VEMOS LAS CARGAS REGISTRADAS</h1> 
+    
+{% endblock %}
+
+
+{% block titulo2 %}
+<ol>
+    {% if user.is_authenticated %}
+    Pulse el botón para registrar una carga nueva --->
+    
+    <button>
+        <a href="{% url 'carga_crear' %}" > Nuevo Carga </a>
+    </button>
+    {% endif %}
+    <br>   
+    ______________________________________________________________________________
+
+    {% for carga in object_list %}
+    <p> 
+        Código: OP-{{carga.id}}<br>
+        Fecha: {{carga.fecha}} <br>
+        Origen: {{carga.origen}} <br>
+        Destino: {{carga.destino}} <br>
+        Tipo de Carga: {{carga.tipo_carga}} <br>
+        Cantidad: {{carga.cantidad}} <br>
+        <br>
+        {% if user.is_authenticated %}
+        <button>
+            <a href="{% url 'carga_editar' carga.id %}">Editar</a>
+        </button>    
+        &nbsp;
+        <button>
+            <a href="{% url 'carga_eliminar' carga.id %}">Eliminar</a>
+        </button>
+        {% endif %}
+        <br>
+    ################################################
+    </p>
+    
+    {% endfor %}
+</ol>
+{% endblock %}
+
+
